@@ -2,15 +2,15 @@
 *
 * Itagaki Fumihiko 29-Sep-93  Create.
 * Itagaki Fumihiko 26-Dec-93  Brush Up.
-* Itagaki Fumihiko 02-Jan-94  “ü—Ís‚Ì’·‚³‚âƒtƒB[ƒ‹ƒh”‚Ì§ŒÀ‚ğ–³‚­‚µ‚½
+* Itagaki Fumihiko 02-Jan-94  å…¥åŠ›è¡Œã®é•·ã•ã‚„ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰æ•°ã®åˆ¶é™ã‚’ç„¡ãã—ãŸ
 * 1.0
-* Itagaki Fumihiko 01-Jun-95  -f ‚ÅA2ƒoƒCƒg•¶šˆÈ~‚Ì 1ƒoƒCƒg•¶š‚ÌƒfƒŠƒ~ƒ^‚ª”F¯‚³‚ê‚È‚¢
-*                             •s‹ï‡‚ğC³
+* Itagaki Fumihiko 01-Jun-95  -f ã§ã€2ãƒã‚¤ãƒˆæ–‡å­—ä»¥é™ã® 1ãƒã‚¤ãƒˆæ–‡å­—ã®ãƒ‡ãƒªãƒŸã‚¿ãŒèªè­˜ã•ã‚Œãªã„
+*                             ä¸å…·åˆã‚’ä¿®æ­£
 * 1.1
 *
-* Usage: cut -b <ƒŠƒXƒg> [ -nBCZ ] [ -- ] [ <ƒtƒ@ƒCƒ‹> ] ...
-*        cut -c <ƒŠƒXƒg> [ -BCZ ] [--] [ <ƒtƒ@ƒCƒ‹> ] ...
-*        cut -f <ƒŠƒXƒg> [ -d <ƒfƒŠƒ~ƒ^> ] [ -sBCZ ] [ -- ] [ <ƒtƒ@ƒCƒ‹> ] ...
+* Usage: cut -b <ãƒªã‚¹ãƒˆ> [ -nBCZ ] [ -- ] [ <ãƒ•ã‚¡ã‚¤ãƒ«> ] ...
+*        cut -c <ãƒªã‚¹ãƒˆ> [ -BCZ ] [--] [ <ãƒ•ã‚¡ã‚¤ãƒ«> ] ...
+*        cut -f <ãƒªã‚¹ãƒˆ> [ -d <ãƒ‡ãƒªãƒŸã‚¿> ] [ -sBCZ ] [ -- ] [ <ãƒ•ã‚¡ã‚¤ãƒ«> ] ...
 
 .include doscall.h
 .include chrcode.h
@@ -53,8 +53,8 @@ start:
 		dc.b	'#HUPAIR',0
 start1:
 		lea	bss_top(pc),a6
-		lea	stack_bottom(a6),a7		*  A7 := ƒXƒ^ƒbƒN‚Ì’ê
-		lea	$10(a0),a0			*  A0 : PDBƒAƒhƒŒƒX
+		lea	stack_bottom(a6),a7		*  A7 := ã‚¹ã‚¿ãƒƒã‚¯ã®åº•
+		lea	$10(a0),a0			*  A0 : PDBã‚¢ãƒ‰ãƒ¬ã‚¹
 		move.l	a7,d0
 		sub.l	a0,d0
 		move.l	d0,-(a7)
@@ -64,22 +64,22 @@ start1:
 	*
 		move.l	#-1,stdin(a6)
 	*
-	*  ˆø”•À‚ÑŠi”[ƒGƒŠƒA‚ğŠm•Û‚·‚é
+	*  å¼•æ•°ä¸¦ã³æ ¼ç´ã‚¨ãƒªã‚¢ã‚’ç¢ºä¿ã™ã‚‹
 	*
-		lea	1(a2),a0			*  A0 := ƒRƒ}ƒ“ƒhƒ‰ƒCƒ“‚Ì•¶š—ñ‚Ìæ“ªƒAƒhƒŒƒX
-		bsr	strlen				*  D0.L := ƒRƒ}ƒ“ƒhƒ‰ƒCƒ“‚Ì•¶š—ñ‚Ì’·‚³
+		lea	1(a2),a0			*  A0 := ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³ã®æ–‡å­—åˆ—ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
+		bsr	strlen				*  D0.L := ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³ã®æ–‡å­—åˆ—ã®é•·ã•
 		addq.l	#1,d0
 		bsr	malloc
 		bmi	insufficient_memory
 
-		movea.l	d0,a1				*  A1 := ˆø”•À‚ÑŠi”[ƒGƒŠƒA‚Ìæ“ªƒAƒhƒŒƒX
+		movea.l	d0,a1				*  A1 := å¼•æ•°ä¸¦ã³æ ¼ç´ã‚¨ãƒªã‚¢ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
 	*
-	*  ˆø”‚ğƒfƒR[ƒh‚µC‰ğß‚·‚é
+	*  å¼•æ•°ã‚’ãƒ‡ã‚³ãƒ¼ãƒ‰ã—ï¼Œè§£é‡ˆã™ã‚‹
 	*
-		moveq	#0,d6				*  D6.W : ƒGƒ‰[EƒR[ƒh
-		bsr	DecodeHUPAIR			*  ˆø”‚ğƒfƒR[ƒh‚·‚é
-		movea.l	a1,a0				*  A0 : ˆø”ƒ|ƒCƒ“ƒ^
-		move.l	d0,d7				*  D7.L : ˆø”ƒJƒEƒ“ƒ^
+		moveq	#0,d6				*  D6.W : ã‚¨ãƒ©ãƒ¼ãƒ»ã‚³ãƒ¼ãƒ‰
+		bsr	DecodeHUPAIR			*  å¼•æ•°ã‚’ãƒ‡ã‚³ãƒ¼ãƒ‰ã™ã‚‹
+		movea.l	a1,a0				*  A0 : å¼•æ•°ãƒã‚¤ãƒ³ã‚¿
+		move.l	d0,d7				*  D7.L : å¼•æ•°ã‚«ã‚¦ãƒ³ã‚¿
 		subq.l	#1,d0
 		bne	decode_opt_start
 
@@ -108,11 +108,11 @@ start1:
 		bsr	strcmp
 		beq	joke
 decode_opt_start:
-		*  ‚Æ‚è‚ ‚¦‚¸ field list ‚ÉÅ‘åƒƒ‚ƒŠ‚ğŠ„‚è“–‚Ä‚Ä‚¨‚­
+		*  ã¨ã‚Šã‚ãˆãš field list ã«æœ€å¤§ãƒ¡ãƒ¢ãƒªã‚’å‰²ã‚Šå½“ã¦ã¦ãŠã
 		move.l	#$00ffffff,d0
 		bsr	malloc
 		sub.l	#$81000000,d0
-		move.l	d0,d3				*  D3.L : field list ‚Ì—e—Ê
+		move.l	d0,d3				*  D3.L : field list ã®å®¹é‡
 		cmp.l	#4,d3
 		blo	insufficient_memory
 
@@ -122,8 +122,8 @@ decode_opt_start:
 		move.l	d0,list_top(a6)
 		movea.l	d0,a1
 		clr.l	(a1)
-		moveq	#4,d4				*  D4.L : field list g—pƒoƒCƒg”
-		moveq	#0,d5				*  D5.L : ƒtƒ‰ƒO
+		moveq	#4,d4				*  D4.L : field list ä½¿ç”¨ãƒã‚¤ãƒˆæ•°
+		moveq	#0,d5				*  D5.L : ãƒ•ãƒ©ã‚°
 		move.b	#-1,unit(a6)
 		move.w	#HT,delimiter(a6)
 decode_opt_loop1:
@@ -232,7 +232,7 @@ parse_list_loop:
 		cmpi.b	#'-',(a0)
 		bne	parse_list_2			*  D0 == D1
 parse_list_1:
-		*  ‚±‚±‚Å
+		*  ã“ã“ã§
 		*  D1.L : from
 		cmpi.b	#'-',(a0)+
 		bne	bad_list
@@ -244,7 +244,7 @@ parse_list_1:
 		moveq	#-1,d0				*  MAX
 parse_list_2:
 		exg	d0,d1
-		*  ‚±‚±‚Å
+		*  ã“ã“ã§
 		*  D0.L : from
 		*  D1.L : to
 		cmp.l	d0,d1
@@ -262,7 +262,7 @@ parse_list_find_ins_point:
 		bra	parse_list_find_ins_point
 
 ins_list_bottom:
-		*  D0-D1 ‚ğstore‚·‚é
+		*  D0-D1 ã‚’storeã™ã‚‹
 		addq.l	#8,d4
 		cmp.l	d4,d3
 		blo	insufficient_memory
@@ -404,14 +404,14 @@ decode_opt_done:
 		tst.b	unit(a6)
 		bmi	needs_one_of_bcf
 
-		*  field list ‚ğØ‚è‹l‚ß‚é
+		*  field list ã‚’åˆ‡ã‚Šè©°ã‚ã‚‹
 		move.l	d4,-(a7)
 		move.l	list_top(a6),-(a7)
 		DOS	_SETBLOCK
 		addq.l	#8,a7
 
-		moveq	#1,d0				*  o—Í‚Í
-		bsr	is_chrdev			*  ƒLƒƒƒ‰ƒNƒ^EƒfƒoƒCƒX‚©H
+		moveq	#1,d0				*  å‡ºåŠ›ã¯
+		bsr	is_chrdev			*  ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ»ãƒ‡ãƒã‚¤ã‚¹ã‹ï¼Ÿ
 		seq	do_buffering(a6)
 		beq	input_max			*  -- block device
 
@@ -424,14 +424,14 @@ decode_opt_done:
 		btst	#FLAG_B,d5
 		bne	inpbufsize_ok
 
-		bset	#FLAG_C,d5			*  ‰üs‚ğ•ÏŠ·‚·‚é
+		bset	#FLAG_C,d5			*  æ”¹è¡Œã‚’å¤‰æ›ã™ã‚‹
 		bra	inpbufsize_ok
 
 input_max:
 		move.l	#$00ffffff,d0
 inpbufsize_ok:
 		move.l	d0,read_size(a6)
-		*  o—Íƒoƒbƒtƒ@‚ğŠm•Û‚·‚é
+		*  å‡ºåŠ›ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿ã™ã‚‹
 		tst.b	do_buffering(a6)
 		beq	outbuf_ok
 
@@ -443,7 +443,7 @@ inpbufsize_ok:
 		move.l	d0,outbuf_top(a6)
 		move.l	d0,outbuf_ptr(a6)
 outbuf_ok:
-		*  “ü—Íƒoƒbƒtƒ@‚ğŠm•Û‚·‚é
+		*  å…¥åŠ›ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿ã™ã‚‹
 		move.l	#$00ffffff,d0
 		bsr	malloc
 		sub.l	#$81000000,d0
@@ -456,20 +456,20 @@ outbuf_ok:
 inpbuf_ok:
 		move.l	d0,inpbuf_top(a6)
 	*
-	*  •W€“ü—Í‚ğØ‚è‘Ö‚¦‚é
+	*  æ¨™æº–å…¥åŠ›ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
 	*
-		clr.w	-(a7)				*  •W€“ü—Í‚ğ
-		DOS	_DUP				*  •¡»‚µ‚½ƒnƒ“ƒhƒ‹‚©‚ç“ü—Í‚µC
+		clr.w	-(a7)				*  æ¨™æº–å…¥åŠ›ã‚’
+		DOS	_DUP				*  è¤‡è£½ã—ãŸãƒãƒ³ãƒ‰ãƒ«ã‹ã‚‰å…¥åŠ›ã—ï¼Œ
 		addq.l	#2,a7
 		move.l	d0,stdin(a6)
 		bmi	start_do_files
 
 		clr.w	-(a7)
-		DOS	_CLOSE				*  •W€“ü—Í‚ÍƒNƒ[ƒY‚·‚éD
-		addq.l	#2,a7				*  ‚±‚¤‚µ‚È‚¢‚Æ ^C ‚â ^S ‚ªŒø‚©‚È‚¢
+		DOS	_CLOSE				*  æ¨™æº–å…¥åŠ›ã¯ã‚¯ãƒ­ãƒ¼ã‚ºã™ã‚‹ï¼
+		addq.l	#2,a7				*  ã“ã†ã—ãªã„ã¨ ^C ã‚„ ^S ãŒåŠ¹ã‹ãªã„
 start_do_files:
 	*
-	*  ŠJn
+	*  é–‹å§‹
 	*
 		tst.l	d7
 		beq	do_stdin
@@ -514,10 +514,10 @@ exit_program:
 		move.l	stdin(a6),d0
 		bmi	exit_program_1
 
-		clr.w	-(a7)				*  •W€“ü—Í‚ğ
-		move.w	d0,-(a7)			*  Œ³‚É
-		DOS	_DUP2				*  –ß‚·D
-		DOS	_CLOSE				*  •¡»‚ÍƒNƒ[ƒY‚·‚éD
+		clr.w	-(a7)				*  æ¨™æº–å…¥åŠ›ã‚’
+		move.w	d0,-(a7)			*  å…ƒã«
+		DOS	_DUP2				*  æˆ»ã™ï¼
+		DOS	_CLOSE				*  è¤‡è£½ã¯ã‚¯ãƒ­ãƒ¼ã‚ºã™ã‚‹ï¼
 exit_program_1:
 		move.w	d6,-(a7)
 		DOS	_EXIT2
@@ -543,7 +543,7 @@ cut_one:
 		sne	terminate_by_ctrlz(a6)
 		sf	terminate_by_ctrld(a6)
 		bsr	is_chrdev
-		beq	cut_one_start			*  -- ƒuƒƒbƒNEƒfƒoƒCƒX
+		beq	cut_one_start			*  -- ãƒ–ãƒ­ãƒƒã‚¯ãƒ»ãƒ‡ãƒã‚¤ã‚¹
 
 		btst	#5,d0				*  '0':cooked  '1':raw
 		bne	cut_one_start
@@ -1129,27 +1129,27 @@ word_purse:		dc.b	'-purse',0
 word_throat:		dc.b	'-throat',0
 word_up:		dc.b	'-up',0
 word_worm:		dc.b	'-worm',0
-msg_no_memory:		dc.b	'ƒƒ‚ƒŠ‚ª‘«‚è‚Ü‚¹‚ñ',CR,LF,0
-msg_open_fail:		dc.b	': ƒI[ƒvƒ“‚Å‚«‚Ü‚¹‚ñ',CR,LF,0
-msg_read_fail:		dc.b	': “ü—ÍƒGƒ‰[',CR,LF,0
-msg_write_fail:		dc.b	'cut: o—ÍƒGƒ‰[',CR,LF,0
-msg_too_long_line:	dc.b	': s‚ª’·‚·‚¬‚Ü‚·',CR,LF,0
-msg_stdin:		dc.b	'- •W€“ü—Í -',0
-msg_illegal_option:	dc.b	'•s³‚ÈƒIƒvƒVƒ‡ƒ“ -- ',0
-msg_needs_one_of_bcf:	dc.b	'-b, -c, -f ‚Ì‚Ç‚ê‚©‚Ğ‚Æ‚Â‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢',0
-msg_needs_list:		dc.b	'ƒŠƒXƒg‚Ìw’è‚ª‚ ‚è‚Ü‚¹‚ñ',0
-msg_bad_list:		dc.b	'ƒŠƒXƒg‚Ìw’è‚ª•s³‚Å‚·',0
-msg_needs_delimiter:	dc.b	'-d ‚É‚Í <ƒfƒŠƒ~ƒ^> ˆø”‚ª•K—v‚Å‚·',0
-msg_bad_delimiter:	dc.b	'ƒfƒŠƒ~ƒ^‚Ìw’è‚ª•s³‚Å‚·',0
+msg_no_memory:		dc.b	'ãƒ¡ãƒ¢ãƒªãŒè¶³ã‚Šã¾ã›ã‚“',CR,LF,0
+msg_open_fail:		dc.b	': ã‚ªãƒ¼ãƒ—ãƒ³ã§ãã¾ã›ã‚“',CR,LF,0
+msg_read_fail:		dc.b	': å…¥åŠ›ã‚¨ãƒ©ãƒ¼',CR,LF,0
+msg_write_fail:		dc.b	'cut: å‡ºåŠ›ã‚¨ãƒ©ãƒ¼',CR,LF,0
+msg_too_long_line:	dc.b	': è¡ŒãŒé•·ã™ãã¾ã™',CR,LF,0
+msg_stdin:		dc.b	'- æ¨™æº–å…¥åŠ› -',0
+msg_illegal_option:	dc.b	'ä¸æ­£ãªã‚ªãƒ—ã‚·ãƒ§ãƒ³ -- ',0
+msg_needs_one_of_bcf:	dc.b	'-b, -c, -f ã®ã©ã‚Œã‹ã²ã¨ã¤ã‚’æŒ‡å®šã—ã¦ãã ã•ã„',0
+msg_needs_list:		dc.b	'ãƒªã‚¹ãƒˆã®æŒ‡å®šãŒã‚ã‚Šã¾ã›ã‚“',0
+msg_bad_list:		dc.b	'ãƒªã‚¹ãƒˆã®æŒ‡å®šãŒä¸æ­£ã§ã™',0
+msg_needs_delimiter:	dc.b	'-d ã«ã¯ <ãƒ‡ãƒªãƒŸã‚¿> å¼•æ•°ãŒå¿…è¦ã§ã™',0
+msg_bad_delimiter:	dc.b	'ãƒ‡ãƒªãƒŸã‚¿ã®æŒ‡å®šãŒä¸æ­£ã§ã™',0
 msg_usage:		dc.b	CR,LF
-	dc.b	'g—p–@:  cut -b <ƒŠƒXƒg> [-nBCZ] [--] [<ƒtƒ@ƒCƒ‹>] ...',CR,LF
-	dc.b	'         cut -c <ƒŠƒXƒg> [-BCZ] [--] [<ƒtƒ@ƒCƒ‹>] ...',CR,LF
-	dc.b	'         cut -f <ƒŠƒXƒg> [-d <ƒfƒŠƒ~ƒ^>] [-sBCZ] [--] [<ƒtƒ@ƒCƒ‹>] ...',CR,LF,0
-msg_let:	dc.b	'cutlet n. ƒJƒcƒŒƒc. –û‚Å—g‚°‚½‚à‚ÌC‚ ‚Ô‚èÄ‚«‚Ì‚à‚Ì, ˆß‚ğ‚Â‚¯‚½‚à‚Ì, ‚Â‚¯‚È‚¢‚à‚Ì‚È‚Ç‚ª‚ ‚é.',CR,LF,0
-msg_purse:	dc.b	'cutpurse n. ‚·‚è(pickpocket).',CR,LF,0
-msg_throat:	dc.b	'cutthroat n. lE‚µ(murder). \a. El‚Ì; ‹¥–\‚È(cruel); Œƒ‚µ‚¢(keen), ”j‰ó“I‚È.',CR,LF,0
-msg_up:		dc.b	'cutup n.y•Ä‘­z‚Ó‚´‚¯‚ñ‚Ú‚¤, ’ƒ–Ú; ©–‰Æ.',CR,LF,0
-msg_worm:	dc.b	'cutworm n. ªØ‚è’.',CR,LF,0
+	dc.b	'ä½¿ç”¨æ³•:  cut -b <ãƒªã‚¹ãƒˆ> [-nBCZ] [--] [<ãƒ•ã‚¡ã‚¤ãƒ«>] ...',CR,LF
+	dc.b	'         cut -c <ãƒªã‚¹ãƒˆ> [-BCZ] [--] [<ãƒ•ã‚¡ã‚¤ãƒ«>] ...',CR,LF
+	dc.b	'         cut -f <ãƒªã‚¹ãƒˆ> [-d <ãƒ‡ãƒªãƒŸã‚¿>] [-sBCZ] [--] [<ãƒ•ã‚¡ã‚¤ãƒ«>] ...',CR,LF,0
+msg_let:	dc.b	'cutlet n. ã‚«ãƒ„ãƒ¬ãƒ„. æ²¹ã§æšã’ãŸã‚‚ã®ï¼Œã‚ã¶ã‚Šç„¼ãã®ã‚‚ã®, è¡£ã‚’ã¤ã‘ãŸã‚‚ã®, ã¤ã‘ãªã„ã‚‚ã®ãªã©ãŒã‚ã‚‹.',CR,LF,0
+msg_purse:	dc.b	'cutpurse n. ã™ã‚Š(pickpocket).',CR,LF,0
+msg_throat:	dc.b	'cutthroat n. äººæ®ºã—(murder). â€•a. æ®ºäººã®; å‡¶æš´ãª(cruel); æ¿€ã—ã„(keen), ç ´å£Šçš„ãª.',CR,LF,0
+msg_up:		dc.b	'cutup n.ã€ç±³ä¿—ã€‘ãµã–ã‘ã‚“ã¼ã†, èŒ¶ç›®; è‡ªæ…¢å®¶.',CR,LF,0
+msg_worm:	dc.b	'cutworm n. æ ¹åˆ‡ã‚Šè™«.',CR,LF,0
 *****************************************************************
 .bss
 .even
